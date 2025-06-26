@@ -13,10 +13,12 @@ def save_to_mysql(df):
         CREATE TABLE IF NOT EXISTS lawyer_data (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(255),
-            rating FLOAT,
-            reviews INT,
+            organization VARCHAR(255),
             location TEXT,
-            source VARCHAR(50)
+            state VARCHAR(100),
+            is_pro_bono BOOLEAN,
+            wage_estimate FLOAT,
+            source VARCHAR(100)
         );
     """)
 
