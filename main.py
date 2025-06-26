@@ -9,7 +9,7 @@ from eda.outlier_detection import flag_outliers
 def main():
     avvo = scrape_avvo()
     lawyers_com = scrape_lawyers()
-    merged = pd.concat(lawyers_com, ignore_index=True)
+    merged = pd.concat([avvo, lawyers_com], ignore_index=True)
     clean = clean_data(merged)
     save_to_mysql(clean)
     plot_ratings(clean)
