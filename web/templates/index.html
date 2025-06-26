@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EOIR Lawyer Dashboard</title>
+</head>
+<body>
+    <h1>EOIR Immigration Lawyer Access Dashboard</h1>
+    <p>Explore pro bono legal aid providers across the U.S.</p>
+
+    <h2>Visualizations</h2>
+    <img src="/static/lawyers_by_state.png" width="600" />
+    <img src="/static/org_types.png" width="400" />
+
+    <h2>Search Lawyers by State</h2>
+    <form method="get" action="/search">
+        <label for="state">State (e.g. CA, TX): </label>
+        <input type="text" id="state" name="state" required />
+        <button type="submit">Search</button>
+    </form>
+
+    {% if lawyers %}
+        <h3>Results for {{ state }}:</h3>
+        <ul>
+        {% for lawyer in lawyers %}
+            <li><strong>{{ lawyer.name }}</strong> - {{ lawyer.organization }} ({{ lawyer.location }})</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

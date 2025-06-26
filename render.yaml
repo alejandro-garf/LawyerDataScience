@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: eoir-lawyer-dashboard
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 api/app.py
+    plan: free

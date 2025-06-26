@@ -1,0 +1,7 @@
+Flask
+mysql-connector-python
+pdfplumber
+pytesseract
+pdf2image
+pandas
+matplotlib
