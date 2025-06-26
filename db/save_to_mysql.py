@@ -1,10 +1,11 @@
 import mysql.connector
+import pandas as pd
 
 def save_to_mysql(df):
     conn = mysql.connector.connect(
         host="localhost",
         user="root",
-        password="yourpassword",  # 🔁 Replace with your password
+        password="del49for",  # 🔁 Replace with your password
         database="lawyers"
     )
     cursor = conn.cursor()
@@ -29,14 +30,15 @@ def save_to_mysql(df):
                 is_pro_bono, wage_estimate, source
             ) VALUES (%s, %s, %s, %s, %s, %s, %s)
         """, (
-            row['name'],
-            row['organization'],
-            row['location'],
-            row['state'],
-            bool(row['is_pro_bono']),
-            row['wage_estimate'],
-            row['source']
-        ))
+            row['name'] if pd.notna(row['name']) else None,
+            row['organization'] if pd.notna(row['organization']) else None,
+            row['location'] if pd.notna(row['location']) else None,
+            row['state'] if pd.notna(row['state']) else None,
+            bool(row['is_pro_bono']) if pd.notna(row['is_pro_bono']) else None,
+            float(row['wage_estimate']) if pd.notna(row['wage_estimate']) else None,
+            row['source'] if pd.notna(row['source']) else None
+    ))
+
 
     conn.commit()
     cursor.close()
