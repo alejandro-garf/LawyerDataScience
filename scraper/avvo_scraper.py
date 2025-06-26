@@ -3,25 +3,27 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 def scrape_avvo():
-    url = "https://www.avvo.com/all-lawyers/ca/fullerton.html"
+    url = "https://www.avvo.com/immigration-lawyer/ca/fullerton.html"
     headers = {"User-Agent": "Mozilla/5.0"}
-    page = requests.get(url, headers=headers)
-    soup = BeautifulSoup(page.content, "html.parser")
+    response = requests.get(url, headers=headers)
+    soup = BeautifulSoup(response.content, "html.parser")
 
-    lawyers = []
+    results = []
+    listings = soup.select(".search-result")
 
-    for profile in soup.select(".search-result"):
-        name = profile.select_one(".v-card__name")
-        rating = profile.select_one(".avvo-rating")
-        reviews = profile.select_one(".review-count")
-        location = profile.select_one(".v-card__address")
+    for item in listings:
+        name = item.select_one(".v-card__name")
+        rating = item.select_one(".avvo-rating")
+        reviews = item.select_one(".review-count")
+        location = item.select_one(".v-card__address")
 
-        lawyers.append({
-            "name": name.text.strip() if name else None,
-            "rating": rating.text.strip() if rating else None,
-            "reviews": reviews.text.strip() if reviews else None,
-            "location": location.text.strip() if location else None,
+        results.append({
+            "name": name.get_text(strip=True) if name else None,
+            "rating": rating.get_text(strip=True) if rating else None,
+            "reviews": reviews.get_text(strip=True) if reviews else None,
+            "location": location.get_text(strip=True) if location else None,
             "source": "Avvo"
         })
 
-    return pd.DataFrame(lawyers)
+    return pd.DataFrame(results)
+

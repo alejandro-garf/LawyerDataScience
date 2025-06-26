@@ -3,10 +3,13 @@ import mysql.connector
 
 app = Flask(__name__)
 
-@app.route("/lawyers")
+@app.route('/lawyers')
 def get_lawyers():
     conn = mysql.connector.connect(
-        host="localhost", user="root", password="yourpassword", database="lawyers"
+        host="localhost",
+        user="root",
+        password="del49for",
+        database="lawyers"
     )
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM lawyer_data")
