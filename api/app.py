@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template
 import mysql.connector
+import os
 
 app = Flask(__name__, static_folder="../web/static", template_folder="../web/templates")
 
@@ -28,4 +29,5 @@ def search():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
