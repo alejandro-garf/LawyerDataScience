@@ -53,7 +53,7 @@ LawyerDataScience/
 
 ## 🚀 Try It Out
 
-Visit the live site at: [https://justice-lens.onrender.com](https://justice-lens.onrender.com) *(replace with actual URL)*
+Visit the live site at: [https://pro-bono-lawyer-explorer.onrender.com](https://pro-bono-lawyer-explorer.onrender.com) 
 
 Features:
 
@@ -85,8 +85,3 @@ Features:
 * Flask + visual storytelling is a powerful combo for fast, mission-driven projects.
 
 ---
-
-## 📬 Contact
-
-Gael Alejandro Fonseca
-\[Add GitHub or email link here]
